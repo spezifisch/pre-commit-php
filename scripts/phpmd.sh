@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr//bin/env sh
 
 color_red="\033[0;31m"
 color_reset="\033[0m"
