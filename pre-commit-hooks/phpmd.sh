@@ -1,6 +1,5 @@
 #!/bin/sh
 
-color_green="\033[0;32m"
 color_red="\033[0;31m"
 color_reset="\033[0m"
 
@@ -34,10 +33,9 @@ for input_file in ${input_files[@]}; do
   echo "Running: ${command}"
   command_output=`eval $command`
   echo "${command_output}"
-  if [[ "${command_output}" =~ ERROR ]]; then
+  if [[ "${command_output}" =~ ERROR ]] || [[ "${command_output}" =~ VIOLATION ]]; then
     error_occurred=1
   fi
   echo
 done
-exit 0
 exit $error_occurred
