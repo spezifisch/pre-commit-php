@@ -13,18 +13,19 @@ elif hash $system_command 2>/dev/null; then
 elif [ -f "$local_command" ]; then
   exec_command="php $local_command"
 else
-  echo -e "PHP Mess Detector command is not found."
-  echo "Make sure that at least one of the following is available:"
-  echo "* $vendor_command"
-  echo "* $system_command"
-  echo "* $local_command"
+  echo -e "PHP Mess Detector executable is not found and at least one of the following executables is required:"
+  echo "  * $vendor_command"
+  echo "  * $system_command"
+  echo "  * $local_command"
 fi
 
 report_param="$1"
 ruleset_param="$2"
 input_files="${@:3}"
-command="${exec_command} ${input_files} ${report_param} ${ruleset_param}"
 
-echo -e "Running command $command"
-command_result=`eval $command`
-exit "$?"
+# Run PHP Mess Detector
+for input_file in ${input_files[@]}; do
+  command="${exec_command} ${input_file} ${report_param} ${ruleset_param}"
+  echo -e "Running: $command"
+  exit_code=`eval $command`
+done
