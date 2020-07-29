@@ -2,9 +2,8 @@ from setuptools import setup
 
 
 setup(
-    name='pre_commit_dummy_package',
+    name='dummy-pre-commit-php',
     version='0.0.0',
-    install_requires=[
-    ],
+    install_requires=[],
 )
 

@@ -21,8 +21,11 @@ else
 fi
 
 echo "$@"
+echo "$0"
 echo "$1"
 echo "$2"
+echo "$3"
+echo "$4"
 
 command_inputs="${@:2}"
 command_params="$1"
