@@ -29,6 +29,7 @@ input_files="${@:3}"
 error_occurred=0
 for input_file in ${input_files[@]}; do
   "${exec_command}" "${input_file}" ${report_param} "${ruleset_param}"
+  echo "$?"
   if [ $? -ne 0 ]; then
     error_occurred=1
     echo "Holy"
