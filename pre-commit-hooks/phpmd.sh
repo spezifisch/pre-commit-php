@@ -30,11 +30,12 @@ error_occurred=0
 
 for input_file in ${input_files[@]}; do
   command="${exec_command} ${input_file} ${report_param} ${ruleset_param}"
-  echo "${color_green}Running: ${command}${color_reset}"
+  echo -e "Running: ${command}"
   command_output=`eval $command`
   echo "${command_output}"
   if [[ "${command_output}" =~ ERROR ]]; then
     error_occurred=1
   fi
+  echo
 done
 exit $error_occurred
