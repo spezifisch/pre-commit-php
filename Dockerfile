@@ -1,6 +1,6 @@
 FROM alpine:3.12
 
-COPY phpmd.sh /app/
+COPY scripts/ /app/scripts/
 RUN cd /app \
   && apk add --no-cache \
     composer \
@@ -10,8 +10,8 @@ RUN cd /app \
     phpmd/phpmd \
 #    phpunit/phpunit \
 #    squizlabs/php_codesniffer \
-  && chmod a+x /app/phpmd.sh
+  && chmod a+x /app/scripts/*
 
 WORKDIR /app
-ENV PATH=/app/vendor/bin:/app:$PATH
+ENV PATH=/app/vendor/bin:/app/scripts:$PATH
 CMD ["phpmd", "--help"]
