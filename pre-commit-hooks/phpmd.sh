@@ -21,16 +21,16 @@ else
 fi
 
 echo "$@"
-echo "$0"
 echo "$1"
 echo "$2"
 echo "$3"
 echo "$4"
 
-command_inputs="${@:2}"
-command_params="$1"
-command_line="${exec_command} ${command_inputs} ${command_params}"
+report_param="$1"
+ruleset_param="$2"
+input_files="${@:3}"
+command="${exec_command} ${command_inputs} ${report_param} ${ruleset_param}"
 
-echo -e "Running command $command_line"
-command_result=`eval $command_line`
+echo -e "Running command $command"
+command_result=`eval $command`
 exit "$?"
