@@ -1,8 +1,8 @@
 #!/bin/sh
 
+color_green="\033[0;32m"
 color_red="\033[0;31m"
 color_reset="\033[0m"
-color_white_bold="\033[1;37m"
 
 # Set PHP Mess Detector candidates
 vendor_command="vendor/bin/phpmd"
@@ -30,7 +30,7 @@ error_occurred=0
 
 for input_file in ${input_files[@]}; do
   command="${exec_command} ${input_file} ${report_param} ${ruleset_param}"
-  echo "Running ${color_white_bold}${command}${color_reset}"
+  echo "${color_green}Running: ${command}${color_reset}"
   command_output=`eval $command`
   echo "${command_output}"
   if [[ "${command_output}" =~ ERROR ]]; then
