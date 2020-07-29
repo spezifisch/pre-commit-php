@@ -20,6 +20,10 @@ else
   echo "* $local_command"
 fi
 
+echo "$@"
+echo "$1"
+echo "$2"
+
 command_inputs="${@:2}"
 command_params="$1"
 command_line="${exec_command} ${command_inputs} ${command_params}"
