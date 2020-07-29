@@ -14,7 +14,7 @@ if [ -f "$vendor_command" ]; then
   exec_command=$vendor_command
 elif hash $system_command 2>/dev/null; then
   exec_command=$system_command
-elif [ -f "$local_command" ]; then
+elif [ -f "$phar_command" ]; then
   exec_command="php $phar_command"
 else
   echo "${color_red}PHP Mess Detector is not found.${color_reset}"
