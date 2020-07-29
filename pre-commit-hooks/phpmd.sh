@@ -19,7 +19,8 @@ elif [ -f "$local_command" ]; then
   exec_command="php $phar_command"
 else
   echo "${color_red}PHP Mess Detector is not found.${color_reset}"
-  echo "At least one of the following is required: $vendor_command, $system_command, or $local_command"
+  echo "At least one of the following is required: $vendor_command, $system_command, or $phar_command"
+  exit 1
 fi
 
 # Run PHP Mess Detector on each input file
@@ -30,7 +31,7 @@ error_occurred=0
 
 for input_file in ${input_files[@]}; do
   command="${exec_command} ${input_file} ${report_param} ${ruleset_param}"
-  echo -e "Running: ${command}"
+  echo "Running: ${command}"
   command_output=`eval $command`
   echo "${command_output}"
   if [[ "${command_output}" =~ ERROR ]]; then
