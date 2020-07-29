@@ -22,7 +22,7 @@ else
   exit 1
 fi
 
-# Run PHP Mess Detector on each input file
+# Run PHP Mess Detector
 report_param="$1"
 ruleset_param="$2"
 input_files="${@:3}"
