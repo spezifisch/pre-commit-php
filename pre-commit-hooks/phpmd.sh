@@ -28,11 +28,7 @@ input_files="${@:3}"
 # Run PHP Mess Detector on each input file
 error_occurred=0
 for input_file in ${input_files[@]}; do
-  "${exec_command}" "${input_file}" ${report_param} "${ruleset_param}"
-  echo "$?"
-  if [ $? -ne 0 ]; then
-    error_occurred=1
-    echo "Holy"
-  fi
+  command="${exec_command} ${input_file} ${report_param} ${ruleset_param}"
+  command_output=`eval $command`
 done
 exit $error_occurred
