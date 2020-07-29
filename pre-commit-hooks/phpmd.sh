@@ -23,9 +23,7 @@ report_param="$1"
 ruleset_param="$2"
 input_files="${@:3}"
 
-# Run PHP Mess Detector
+# Run PHP Mess Detector on each input file
 for input_file in ${input_files[@]}; do
-  command="${exec_command} ${input_file} ${report_param} ${ruleset_param}"
-  echo -e "Running: $command"
-  exit_code=`eval $command`
+  ${exec_command} "${input_file}" ${report_param} "${ruleset_param}"
 done
