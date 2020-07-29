@@ -28,8 +28,8 @@ input_files="${@:3}"
 # Run PHP Mess Detector on each input file
 error_occurred=0
 for input_file in ${input_files[@]}; do
-  echo "${exec_command} ${input_file} ${report_param} ${ruleset_params}"
-  "${exec_command} ${input_file} ${report_param} ${ruleset_param}"
+  echo "${exec_command} ${input_file} ${report_param} ${ruleset_param}"
+  "${exec_command}" "${input_file}" ${report_param} "${ruleset_param}"
   if [ $? -ne 0 ]; then
     error_occurred=1
   fi
