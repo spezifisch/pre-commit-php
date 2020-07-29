@@ -20,16 +20,10 @@ else
   echo "* $local_command"
 fi
 
-echo "$@"
-echo "$1"
-echo "$2"
-echo "$3"
-echo "$4"
-
 report_param="$1"
 ruleset_param="$2"
 input_files="${@:3}"
-command="${exec_command} ${command_inputs} ${report_param} ${ruleset_param}"
+command="${exec_command} ${input_files} ${report_param} ${ruleset_param}"
 
 echo -e "Running command $command"
 command_result=`eval $command`
