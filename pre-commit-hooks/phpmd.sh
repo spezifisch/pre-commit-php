@@ -30,5 +30,6 @@ error_occurred=0
 for input_file in ${input_files[@]}; do
   command="${exec_command} ${input_file} ${report_param} ${ruleset_param}"
   command_output=`eval $command`
+  echo -e "${command_output}"
 done
 exit $error_occurred
