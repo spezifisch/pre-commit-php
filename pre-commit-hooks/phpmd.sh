@@ -39,4 +39,5 @@ for input_file in ${input_files[@]}; do
   fi
   echo
 done
+exit 0
 exit $error_occurred
