@@ -1,5 +1,9 @@
 #!/bin/sh
 
+color_red="\033[0;31m"
+color_reset="\033[0m"
+color_white_bold="\033[1;37m"
+
 # Set PHP Mess Detector candidates
 vendor_command="vendor/bin/phpmd"
 system_command="phpmd"
@@ -14,8 +18,6 @@ elif hash $system_command 2>/dev/null; then
 elif [ -f "$local_command" ]; then
   exec_command="php $phar_command"
 else
-  color_red="\033[0;31m"
-  color_red="\033[0m"
   echo "${color_red}PHP Mess Detector is not found.${color_reset}"
   echo "At least one of the following is required: $vendor_command, $system_command, or $local_command"
 fi
@@ -28,6 +30,7 @@ error_occurred=0
 
 for input_file in ${input_files[@]}; do
   command="${exec_command} ${input_file} ${report_param} ${ruleset_param}"
+  echo "Running ${color_white_bold}${command}${color_reset}"
   command_output=`eval $command`
   echo "${command_output}"
   if [[ "${command_output}" =~ ERROR ]]; then
