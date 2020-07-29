@@ -31,7 +31,7 @@ for input_file in ${input_files[@]}; do
   command="${exec_command} ${input_file} ${report_param} ${ruleset_param}"
   command_output=`eval $command`
   echo "${command_output}"
-  if [ "${command_output}" =~ ERROR ]; then
+  if [[ "${command_output}" =~ ERROR ]]; then
     error_occurred=1
   fi
 done
