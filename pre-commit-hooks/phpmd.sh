@@ -1,32 +1,31 @@
 #!/bin/sh
 
-# Set PHP Mess Detector command candidates
+# Set PHP Mess Detector candidates
 vendor_command="vendor/bin/phpmd"
 system_command="phpmd"
-local_command="phpmd.phar"
+phar_command="phpmd.phar"
 
-# Search PHP Mess Detector command
+# Search PHP Mess Detector
 exec_command=""
 if [ -f "$vendor_command" ]; then
   exec_command=$vendor_command
 elif hash $system_command 2>/dev/null; then
   exec_command=$system_command
 elif [ -f "$local_command" ]; then
-  exec_command="php $local_command"
+  exec_command="php $phar_command"
 else
-  echo -e "PHP Mess Detector executable is not found and at least one of the following executables is required:"
-  echo "  * $vendor_command"
-  echo "  * $system_command"
-  echo "  * $local_command"
+  color_red="\033[0;31m"
+  color_red="\033[0m"
+  echo "${color_red}PHP Mess Detector is not found.${color_reset}"
+  echo "At least one of the following is required: $vendor_command, $system_command, or $local_command"
 fi
 
-# Collect input filenames and parameters
+# Run PHP Mess Detector on each input file
 report_param="$1"
 ruleset_param="$2"
 input_files="${@:3}"
-
-# Run PHP Mess Detector on each input file
 error_occurred=0
+
 for input_file in ${input_files[@]}; do
   command="${exec_command} ${input_file} ${report_param} ${ruleset_param}"
   command_output=`eval $command`
@@ -35,6 +34,4 @@ for input_file in ${input_files[@]}; do
     error_occurred=1
   fi
 done
-
-echo $error_occurred
 exit $error_occurred
