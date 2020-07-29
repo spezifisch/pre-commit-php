@@ -19,7 +19,7 @@ elif [ -f "$local_command" ]; then
   exec_command="php $phar_command"
 else
   echo "${color_red}PHP Mess Detector is not found.${color_reset}"
-  echo "At least one of the following is required: $vendor_command, $system_command, or $phar_command"
+  echo "$vendor_command, $system_command, or $phar_command is requried."
   exit 1
 fi
 
