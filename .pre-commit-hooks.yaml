@@ -3,5 +3,5 @@
   description: Run phpmd to detect code smells and possible errors
   language: script
   files: \.php$
-  entry: pre-commit-hooks/phpmd.sh
+  entry: phpmd.sh
   args: ["ansi", "cleancode,codesize,controversial,design,naming,unusedcode"]
