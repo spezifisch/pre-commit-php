@@ -1,12 +1,12 @@
-# daverona/pre-commit-php
+# daverona/pre-commit/php
 
-[![pipeline status](https://gitlab.com/daverona//pre-commit-php/badges/master/pipeline.svg)](https://gitlab.com/daverona/pre-commit-php/-/commits/master)
+[![pipeline status](https://gitlab.com/daverona//pre-commit/php/badges/master/pipeline.svg)](https://gitlab.com/daverona/pre-commit/php/-/commits/master)
 
 This is a set of PHP hooks for [pre-commit framework](https://pre-commit.com/).
 
-* GitLab repository: [https://gitlab.com/daverona/pre-commit-php](https://gitlab.com/daverona/pre-commit-php)
+* GitLab repository: [https://gitlab.com/daverona/pre-commit/php](https://gitlab.com/daverona/pre-commit/php)
 * Docker registry: [https://hub.docker.com/r/daverona/pre-commit-php](https://hub.docker.com/r/daverona/pre-commit-php)
-* Available releases: [https://gitlab.com/daverona/pre-commit-php/-/releases](https://gitlab.com/daverona/pre-commit-php/-/releases)
+* Available releases: [https://gitlab.com/daverona/pre-commit/php/-/releases](https://gitlab.com/daverona/pre-commit/php/-/releases)
 
 ## Overview
 
@@ -24,11 +24,10 @@ PHP hooks provided are:
 
 ## Hook Installation
 
-To use PHP hooks, add the following YAML code block to your
-`.pre-commit-config.yaml`:
+To use PHP hooks, add the following code block to your `.pre-commit-config.yaml`:
 
 ```yaml
-- repo: https://gitlab.com/daverona/pre-commit-php
+- repo: https://gitlab.com/daverona/pre-commit/php
   rev: 0.5.0          # use the most recent version
   hooks:
   # Hooks using native executables
