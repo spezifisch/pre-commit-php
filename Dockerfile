@@ -14,7 +14,8 @@ RUN apk add --no-cache \
   && composer require --no-cache --optimize-autoloader \
     phpmd/phpmd \
     phpunit/phpunit \
-    squizlabs/php_codesniffer
+    squizlabs/php_codesniffer \
+  && rm -rf /root/.composer
 
 COPY scripts/ /app/scripts/
 RUN chmod a+x /app/scripts/*
