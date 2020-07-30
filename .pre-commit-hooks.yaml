@@ -11,5 +11,5 @@
   description: Run phpmd to detect code smells and possible errors in Docker container
   language: docker_image
   files: \.php$
-  entry: daverona/pre-commit-php phpmd.sh
+  entry: daverona/pre-commit-php scripts/phpmd.sh
   args: ["ansi", "cleancode,codesize,controversial,design,naming,unusedcode"]
