@@ -33,7 +33,7 @@ To use PHP hooks, add the following code block to your `.pre-commit-config.yaml`
   # Hooks using native executables
   - id: phpmd         # static analyzer for PHP code
   # Hooks using Docker
-  - id: docker-phpmd  # static analyzer for PHP code in Docker container
+  - id: docker-phpmd  # phpmd in Docker container
 ```
 
 > You don't need to use non-docker version hook and its corresponding docker version at the same time.
