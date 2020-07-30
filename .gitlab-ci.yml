@@ -1,0 +1,86 @@
+# DOCKERHUB_USERNAME  username
+# DOCKERHUB_PASSWORD  secret
+# DOCKERHUB_NAMESPACE namespace
+# DOCKERHUB_IMAGE     image
+
+stages:
+  - build
+  - release
+  - publish
+  - silly
+
+build:
+  stage: build
+  only:
+    refs:
+      - branches
+      - tags
+    changes:
+      - Dockerfile
+  image: docker:19.03.8
+  services:
+    - docker:19.03.8-dind
+  script:
+    - docker login --username gitlab-ci-token --password $CI_JOB_TOKEN $CI_REGISTRY
+    - docker image pull $CI_REGISTRY_IMAGE:master || true
+    - >
+      docker image build
+      --pull
+      --cache-from $CI_REGISTRY_IMAGE:master
+      --tag $CI_REGISTRY_IMAGE:master
+      .
+    - docker image push $CI_REGISTRY_IMAGE:master
+    - docker logout $CI_REGISTRY
+
+release:
+  stage: release
+  only:
+    refs:
+      - tags
+    changes:
+      - Dockerfile
+  image: docker:19.03.8
+  services:
+    - docker:19.03.8-dind
+  variables:
+    GIT_STRATEGY: none
+  script:
+    - docker login --username gitlab-ci-token --password $CI_JOB_TOKEN $CI_REGISTRY
+    - docker image pull $CI_REGISTRY_IMAGE:master
+    - docker image tag $CI_REGISTRY_IMAGE:master $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
+    - docker image tag $CI_REGISTRY_IMAGE:master $CI_REGISTRY_IMAGE:latest
+    - docker image push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
+    - docker image push $CI_REGISTRY_IMAGE:latest
+    - docker logout $CI_REGISTRY
+    - docker image tag $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME $DOCKERHUB_NAMESPACE/$DOCKERHUB_IMAGE:$CI_COMMIT_REF_NAME
+    - docker image tag $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME $DOCKERHUB_NAMESPACE/$DOCKERHUB_IMAGE:latest
+    - docker login --username $DOCKERHUB_USERNAME --password $DOCKERHUB_PASSWORD
+    - docker image push $DOCKERHUB_NAMESPACE/$DOCKERHUB_IMAGE:$CI_COMMIT_REF_NAME
+    - docker image push $DOCKERHUB_NAMESPACE/$DOCKERHUB_IMAGE:latest
+    - docker logout
+
+publish:
+  stage: publish
+  only:
+    refs:
+      - master
+    changes:
+      - README.md
+  image: docker:19.03.8
+  services:
+    - docker:19.03.8-dind
+  script:
+    - > 
+      docker container run 
+      --rm
+      --volume $PWD/README.md:/app/README.md
+      --env DOCKERHUB_USERNAME=$DOCKERHUB_USERNAME
+      --env DOCKERHUB_PASSWORD=$DOCKERHUB_PASSWORD
+      --env DOCKERHUB_NAMESPACE=$DOCKERHUB_NAMESPACE
+      --env DOCKERHUB_IMAGE=$DOCKERHUB_IMAGE
+      daverona/docker-desc
+
+silly:
+  stage: silly
+  script:
+    - echo "You silly."
