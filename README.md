@@ -12,8 +12,8 @@ This is a set of PHP hooks for [pre-commit framework](https://pre-commit.com/).
 
 PHP hooks provided are:
 
-* [phpmd](https://phpmd.org/): static code analyzer 
-* docker-phpmd: docker-version static code analyzer 
+* [phpmd](https://phpmd.org/): static analyzer of PHP code
+* docker-phpmd: docker-version phpmd hook
 
 ## Hook Prerequisites
 
@@ -32,9 +32,9 @@ To use PHP hooks, add the following YAML code block to your
   rev: 0.5.0          # use the most recent version
   hooks:
   # Hooks using native executables
-  - id: phpmd         # static code analyzer
+  - id: phpmd         # static analyzer of PHP code
   # Hooks using Docker
-  - id: docker-phpmd  # static code analyzer in Docker container
+  - id: docker-phpmd  # static analyzer of PHP code in Docker container
 ```
 
 > You don't need to use non-docker version hook and its corresponding docker version at the same time.
