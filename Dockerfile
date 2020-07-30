@@ -22,3 +22,4 @@ RUN chmod a+x /app/scripts/*
 ENV PATH=/app/vendor/bin:/app/scripts:$PATH
 
 CMD ["phpunit"]
+
