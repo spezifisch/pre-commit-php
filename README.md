@@ -49,3 +49,4 @@ To use PHP hooks, add the following YAML code block to your
 * pre-commit framework: [https://pre-commit.com/](https://pre-commit.com/)
 * pre-commit supported hooks: [https://pre-commit.com/hooks.html](https://pre-commit.com/hooks.html)
 * PHP Mess Detector: [https://phpmd.org/](https://phpmd.org/)
+
