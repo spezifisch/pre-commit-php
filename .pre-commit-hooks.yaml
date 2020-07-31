@@ -1,14 +1,14 @@
 - id: phpmd
   name: PHP Mess Detector
-  description: Run phpmd to detect code smells and possible errors
+  description: Run `phpmd` to find possible bugs, suboptimal code, overcomplicated expressions, and so on
   language: script
   files: \.php$
-  entry: scripts/phpmd.sh
+  entry: pre-commit-hooks/phpmd.sh
   args: ["ansi", "cleancode,codesize,controversial,design,naming,unusedcode"]
 
 - id: docker-phpmd
   name: PHP Mess Detector
-  description: Run phpmd to detect code smells and possible errors in Docker container
+  description: Run `phpmd` to find possible bugs, suboptimal code, overcomplicated expressions, and so on
   language: docker_image
   files: \.php$
   entry: daverona/pre-commit-php phpmd.sh

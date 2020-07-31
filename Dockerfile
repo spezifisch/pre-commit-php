@@ -17,9 +17,8 @@ RUN apk add --no-cache \
     squizlabs/php_codesniffer \
   && rm -rf /root/.composer
 
-COPY scripts/ /app/scripts/
-RUN chmod a+x /app/scripts/*
-ENV PATH=/app/vendor/bin:/app/scripts:$PATH
+COPY pre-commit-hooks/ /app/pre-commit-hooks/
+RUN chmod a+x /app/pre-commit-hooks/*
+ENV PATH=/app/vendor/bin:/app/pre-commit-hooks:$PATH
 
 CMD ["phpunit"]
-
