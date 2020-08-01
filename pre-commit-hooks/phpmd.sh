@@ -17,7 +17,7 @@ elif hash $system_command 2>/dev/null; then
 elif [ -f "$phar_command" ]; then
   exec_command="php $phar_command"
 else
-  echo "${color_red}PHP Mess Detector is not found.${color_reset}"
+  echo -e "${color_red}PHP Mess Detector is not found.${color_reset}"
   echo "$vendor_command, $system_command, or $phar_command is requried."
   exit 1
 fi
