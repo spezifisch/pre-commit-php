@@ -28,7 +28,7 @@ To use PHP hooks, add the following code block to your `.pre-commit-config.yaml`
 
 ```yaml
 - repo: https://gitlab.com/daverona/pre-commit/php
-  rev: 0.5.0          # use the most recent version
+  rev: 0.6.0          # use the most recent version
   hooks:
   # Hooks using native
   - id: phpmd         # static analyzer for PHP code

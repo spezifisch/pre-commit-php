@@ -11,5 +11,5 @@
   description: Run `phpmd` to find possible bugs, suboptimal code, overcomplicated expressions, and so on
   language: docker_image
   files: \.php$
-  entry: daverona/pre-commit-php phpmd.sh
+  entry: daverona/pre-commit-php:0.6.0 phpmd.sh
   args: ["ansi", "cleancode,codesize,controversial,design,naming,unusedcode"]
