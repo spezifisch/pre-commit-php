@@ -12,10 +12,14 @@ RUN apk add --no-cache \
     php7-xml \
     php7-xmlwriter \
   && composer require --no-cache --optimize-autoloader \
+    friendsofphp/php-cs-fixer \
     phpmd/phpmd \
+    phpstan/phpstan \
     phpunit/phpunit \
     squizlabs/php_codesniffer \
-  && rm -rf /root/.composer
+  && rm -rf /root/.composer \
+  && wget -qO /usr/local/bin/phpcpd https://phar.phpunit.de/phpcpd.phar \
+  && chmod a+x /usr/local/bin/phpcpd
 
 COPY pre-commit-hooks/ /app/pre-commit-hooks/
 RUN chmod a+x /app/pre-commit-hooks/*
